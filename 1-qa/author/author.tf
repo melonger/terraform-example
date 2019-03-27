@@ -19,8 +19,11 @@ module "author" {
 module "author_boostrap" {
   source                      = "../../modules/tf-linux"
   user_data                   = "../../scripts/linux-common.sh"
+  aem_data                    = "../../scripts/buildaem.sh"
   ssh_private_key             = "../../datafiles/id_rsa"
+  ssh_public_key              = "../../datafiles/id_rsa.pub"
   pub_ips                     = "${module.author.servers_pubip_address}"
+  storageacct                 = "${var.storage_account_name}"
   os_user                     = "${var.os_user}"
   chef_project                = "${var.chef_project}"
   serverscount                = "${var.author["count"]}"
@@ -29,6 +32,5 @@ module "author_boostrap" {
   environment                 = "${var.environment}"
   tags                        = "${var.tags}"
   serverinfo                  = "${var.author}"
-  # chef_runlist                 = "chef-client -E ${var.environment} -o role[author]"
   # depends_list                 = ""
 }

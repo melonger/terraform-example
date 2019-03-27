@@ -4,7 +4,7 @@ data "terraform_remote_state" "disp" {
     storage_account_name  = "${var.storage_account_name}"
     container_name        = "${var.container_name}"
     key                   = "${var.tags["client"]}/${var.environment}/${var.dispatch["role"]}/terraform.tfstate"
-    access_key            = "${var.storage_access_key}"
+    # access_key            = "STORED IN ENV VARIABLE ARM_ACCESS_KEY"
   }
 }
 
@@ -14,7 +14,7 @@ data "terraform_remote_state" "auth" {
     storage_account_name  = "${var.storage_account_name}"
     container_name        = "${var.container_name}"
     key                   = "${var.tags["client"]}/${var.environment}/${var.author["role"]}/terraform.tfstate"
-    access_key            = "${var.storage_access_key}"
+    # access_key            = "STORED IN ENV VARIABLE ARM_ACCESS_KEY"
   }
 }
 
@@ -24,7 +24,7 @@ data "terraform_remote_state" "pub" {
     storage_account_name  = "${var.storage_account_name}"
     container_name        = "${var.container_name}"
     key                   = "${var.tags["client"]}/${var.environment}/${var.publish["role"]}/terraform.tfstate"
-    access_key            = "${var.storage_access_key}"
+    # access_key            = "STORED IN ENV VARIABLE ARM_ACCESS_KEY"
   }
 }
 
@@ -34,7 +34,7 @@ data "terraform_remote_state" "config" {
     storage_account_name  = "${var.storage_account_name}"
     container_name        = "${var.container_name}"
     key                   = "${var.tags["client"]}/${var.environment}/config/terraform.tfstate"
-    access_key            = "${var.storage_access_key}"
+    # access_key            = "STORED IN ENV VARIABLE ARM_ACCESS_KEY"
   }
 }
 
@@ -44,6 +44,6 @@ data "terraform_remote_state" "setup" {
     storage_account_name  = "${var.storage_account_name}"
     container_name        = "${var.container_name}"
     key                   = "${var.tags["client"]}/setup/terraform.tfstate"
-    access_key            = "${var.storage_access_key}"
+    # access_key            = "STORED IN ENV VARIABLE ARM_ACCESS_KEY"
   }
 }

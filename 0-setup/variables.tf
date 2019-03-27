@@ -1,11 +1,11 @@
-variable "subscription_id" {}
+# variable "subscription_id" {}
 variable "client_id" {}
-variable "client_secret" {}
+# variable "client_secret" {}
 variable "tenant_id" {}
+# variable "storage_access_key" {}
 variable "backend" {}
 variable "storage_account_name" {}
 variable "container_name" {}
-variable "storage_access_key" {}
 
 variable "environment" {}
 variable "region" {}
@@ -13,7 +13,7 @@ variable "region" {}
 variable "sku" {}
 variable "retention_in_days" {}
 
-variable "ressourcegroupname" {}
+# variable "ressourcegroupname" {}
 variable "os_user" {}
 # variable "ssh_public_key_location" {}
 # variable "ssh_private_key_location" {}
@@ -66,15 +66,6 @@ variable "backupvault" {
     dailyretention                     = 5 # in days
     monthlyretention                   = 12 # in days
     backuptime                         = "11:00 PM"
-  }
-}
-
-variable "ad" {
-  default = {
-    role                        = "AD"
-    count                       = 1
-    # size                        = "Standard_DS1_v2"
-    startindex                  = 0
   }
 }
 

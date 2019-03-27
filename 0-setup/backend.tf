@@ -1,8 +1,7 @@
 terraform {
   backend "azurerm" {
-    key                  = "EXAMPLE/setup/terraform.tfstate"
-    storage_account_name = "storageacct"
+    key                  = "DOUEAMPLE/setup/terraform.tfstate"
+    storage_account_name = "digitalonusstorage"
     container_name       = "terraform-state"
-    access_key           = "11111111111111111111111111111111111111111111111111111111111111111111"
   }
 }

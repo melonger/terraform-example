@@ -1,9 +1,11 @@
-#!/bin/env bash
+#!/bin/bash -x
 #########################################################################
 ## Starting AEM Script
 #########################################################################
-basefiles="acs-aem-commons-content-3.14.8.zip vanityurls-components-1.0.2.zip VanityURLPerms-1.0.0.zip"
+basefiles="acs-aem-commons-content-3.14.8.zip"
 uniquefiles="cq-6.2.0-hotfix-21560-1.0.zip"
+URL="https://${storageacct}.blob.core.windows.net"
+CONTAINER="aemfiles"
 createService aem || :
 [[ -z "$1" ]] && VERSION="2" || VERSION="$1"
 yum install -y java-1.8.0-openjdk
@@ -19,10 +21,10 @@ else
 fi
 
 if [ ! -f /home/aem/$aemfile ]; then
-	wget https://storageacct.blob.core.windows.net/aemfiles/$aemfile -P /home/aem/
+	wget $URL/$CONTAINER/$aemfile -P /home/aem/
 fi
 if [ ! -f /home/aem/$oakfile ]; then
-	wget https://storageacct.blob.core.windows.net/aemfiles/$oakfile -P /home/aem/
+	wget $URL/$CONTAINER/$oakfile -P /home/aem/
 fi
 
 if [ ! -f /home/aem/crx-quickstart/readme.txt ]; then
@@ -34,20 +36,20 @@ if [ "$VERSION" -eq "4" ] || [ "$VERSION" -eq "3" ]; then
 	for f in $basefiles
 	do
 		if [ ! -f /home/aem/crx-quickstart/install/$f ]; then
-			wget https://storageacct.blob.core.windows.net/aemfiles/packages/$f -P /home/aem/crx-quickstart/install/
+			wget $URL/$CONTAINER/packages/$f -P /home/aem/crx-quickstart/install/
 		fi
 	done
 else
 	for f in $basefiles
 	do
 		if [ ! -f /home/aem/crx-quickstart/install/$f ]; then
-			wget https://storageacct.blob.core.windows.net/aemfiles/packages/$f -P /home/aem/crx-quickstart/install/
+			wget $URL/$CONTAINER/packages/$f -P /home/aem/crx-quickstart/install/
 		fi
 	done
 	for f in $uniquefiles
 	do
 		if [ ! -f /home/aem/crx-quickstart/install/$f ]; then
-			wget https://storageacct.blob.core.windows.net/aemfiles/packages/$f -P /home/aem/crx-quickstart/install/
+			wget $URL/$CONTAINER/packages/$f -P /home/aem/crx-quickstart/install/
 		fi
 	done
 fi

@@ -1,6 +1,6 @@
 provider "azurerm" {
-  subscription_id = "${var.subscription_id}"
-  client_id       = "${var.client_id}"
-  client_secret   = "${var.client_secret}"
-  tenant_id       = "${var.tenant_id}"
+  # subscription_id = "STORED IN ENV VARIABLE ARM_SUBSCRIPTION_ID"
+  # client_id       = "STORED IN ENV VARIABLE ARM_CLIENT_ID"
+  # client_secret   = "STORED IN ENV VARIABLE ARM_CLIENT_SECRET"
+  # tenant_id       = "STORED IN ENV VARIABLE ARM_TENANT_ID"
 }

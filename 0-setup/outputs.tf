@@ -26,20 +26,16 @@ output "nsg_publish_id" {
   value = "${module.sg_publish.nsg_publish_id}"
 }
 
-output "nsg_ad_id" {
-  value = "${module.sg_ad.nsg_ad_id}"
-}
-
-output "nsg_adfs_id" {
-  value = "${module.sg_adfs.nsg_adfs_id}"
-}
-
 output "storageacct_id" {
   value = "${module.storage.storageacct_id}"
 }
 
 output "storageacct_primary_blob_endpoint" {
   value = "${module.storage.storageacct_primary_blob_endpoint}"
+}
+
+output "storageacct_name" {
+  value = "${module.storage.storageacct_name}"
 }
 
 output "keyvault_name" {

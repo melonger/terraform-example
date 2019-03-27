@@ -4,6 +4,17 @@ data "template_file" "instance_user_data" {
   vars {
     device_name         = "${var.serverinfo["device_names"]}"
     mount_name          = "${var.serverinfo["mount_names"]}"
+    ssh_public_key      = "${file(var.ssh_public_key)}"
+    ssh_private_key     = "${file(var.ssh_private_key)}"
+    storageacct         = "${var.storageacct}"
+  }
+}
+
+data "template_file" "instance_aem_data" {
+  template = "${file(var.aem_data)}"
+
+  vars {
+    storageacct         = "${var.storageacct}"
   }
 }
 
@@ -24,12 +35,7 @@ resource "null_resource" "linux_server_instances_bootstrap_empty" {
   }
 
   provisioner "file" {
-    source      = "../../scripts/boot.sh"
-    destination = "/tmp/boot.sh"
-  }
-
-  provisioner "file" {
-    source      = "../../scripts/buildaem.sh"
+    content      = "${data.template_file.instance_aem_data.rendered}"
     destination = "/tmp/buildaem.sh"
   }
 
@@ -59,13 +65,7 @@ resource "null_resource" "instancecount_server_instances" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo /tmp/linux-common.sh"
-    ]
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo /tmp/boot.sh ${var.chef_project}"
+      "sudo /tmp/linux-common.sh ${var.chef_project}"
     ]
   }
 

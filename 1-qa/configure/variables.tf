@@ -1,11 +1,11 @@
-variable "subscription_id" {}
-variable "client_id" {}
-variable "client_secret" {}
-variable "tenant_id" {}
+# variable "subscription_id" {}
+# variable "client_id" {}
+# variable "client_secret" {}
+# variable "tenant_id" {}
+# variable "storage_access_key" {}
 variable "backend" {}
 variable "storage_account_name" {}
 variable "container_name" {}
-variable "storage_access_key" {}
 
 variable "site_dnsname" {}
 variable "os_user" {}

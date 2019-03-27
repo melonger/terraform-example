@@ -5,7 +5,7 @@ resource "azurerm_public_ip" "servers" {
 
   location                      = "${var.region}"
   resource_group_name           = "${var.resource_group_name}"
-  public_ip_address_allocation  = "static"
+  allocation_method             = "Static" # [Static|Dynamic] Must have capitalization
 
   tags {
      role         = "${var.serverinfo["role"]}"
