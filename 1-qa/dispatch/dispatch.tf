@@ -1,6 +1,6 @@
 module "dispatch" {
   source                      = "../../modules/tf-createinstance"
-  ssh_public_key              = "../../datafiles/id_rsa.pub"
+  ssh_public_key              = "${var.ssh_public_key_location}"
   subnet_id                   = "/subscriptions/${var.subscription_id}/resourceGroups/${var.tags["client"]}-RG/providers/Microsoft.Network/virtualNetworks/${var.tags["client_lc"]}-network/subnets/vnet${var.environment}"
   network_security_group_id   = "/subscriptions/${var.subscription_id}/resourceGroups/${var.tags["client"]}-RG/providers/Microsoft.Network/networkSecurityGroups/${var.tags["client_lc"]}-${var.dispatch["role"]}-nsg"
   azurename_prefix            = "${var.tags["client_lc"]}${var.environment}"
@@ -20,8 +20,8 @@ module "dispatch_boostrap" {
   source                      = "../../modules/tf-linux"
   user_data                   = "../../scripts/linux-common.sh"
   aem_data                    = "../../scripts/buildaem.sh"
-  ssh_private_key             = "../../datafiles/id_rsa"
-  ssh_public_key              = "../../datafiles/id_rsa.pub"
+  ssh_private_key             = "${var.ssh_private_key_location}"
+  ssh_public_key              = "${var.ssh_public_key_location}"
   pub_ips                     = "${module.dispatch.servers_pubip_address}"
   storageacct                 = "${var.storage_account_name}"
   os_user                     = "${var.os_user}"

@@ -11,6 +11,9 @@ variable "region" {}
 variable "environment" {}
 variable "os_user" {}
 variable "chef_project" {}
+variable "ssh_private_key_location" {}
+variable "ssh_public_key_location" {}
+
 variable "tags" {
   default = {}
 }
