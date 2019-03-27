@@ -2,4 +2,3 @@
 terraform.tfstate
 terraform.tfstate.*
 terraform.log
-datafiles
