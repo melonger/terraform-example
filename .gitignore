@@ -1,5 +1,11 @@
-**/.terraform/
-terraform.tfstate
-terraform.tfstate.*
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
 terraform.log
 varfiles

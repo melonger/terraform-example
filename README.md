@@ -33,3 +33,8 @@ Good practice is to create your variables place holders in a `variables.tf` file
 Credentials for cloud platforms can be used as hardcoded variables, but is highly suggested to use the environment variables to store the keys. Another method is to use a credentials file and importing them via --var-file.
 
 In either case, keeping the credentials and configuration variables separate from the framework code is best practice, and also adheres to 12 factor application development.
+
+## Modules
+### Terraform Module Registry
+
+### Custom Module
