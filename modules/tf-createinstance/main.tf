@@ -96,7 +96,7 @@ resource "azurerm_virtual_machine" "server" {
   }
 
   storage_data_disk {
-    name              = "${var.hostname}${count.index}-datadisk"
+    name              = "${var.hostname}${(count.index + var.serverinfo["startindex"])}-datadisk"
     managed_disk_id   = "${element(azurerm_managed_disk.datadisk.*.id, count.index)}"
     managed_disk_type = "${var.serverinfo["storage_managed_disk_type"]}"
     disk_size_gb      = "${var.serverinfo["storage_disk_size_gb"]}"

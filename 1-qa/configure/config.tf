@@ -13,5 +13,5 @@ module "configurations_boostrap" {
   region                      = "${var.region}"
   environment                 = "${var.environment}"
   tags                        = "${var.tags}"
-  depends_list                = "" #comma separated values
+  depends_list                = "" #comma separated values. Would put status variables to pull from remote state files for nodes
 }

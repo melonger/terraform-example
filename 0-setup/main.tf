@@ -10,7 +10,7 @@ resource "azurerm_resource_group" "main" {
 
 module "storage" {
   source                      = "../modules/tf-storage"
-  azurename_prefix            = "${var.tags["client_lc"]}"
+  azurename_prefix            = "${lower(var.tags["client"])}"
   region                      = "${var.region}"
   environment                 = "${var.environment}"
   resource_group_name         = "${azurerm_resource_group.main.name}"
@@ -20,7 +20,7 @@ module "storage" {
 
 module "vault" {
   source                      = "../modules/tf-vault"
-  azurename_prefix            = "${var.tags["client_lc"]}"
+  azurename_prefix            = "${lower(var.tags["client"])}"
   region                      = "${var.region}"
   tenant_id                   = "${var.tenant_id}"
   client_id                   = "${var.client_id}"
@@ -33,7 +33,7 @@ module "vault" {
 module "backupvault" {
   source                      = "../modules/tf-backup"
   resource_group_name         = "${azurerm_resource_group.main.name}"
-  azurename_prefix            = "${var.tags["client_lc"]}"
+  azurename_prefix            = "${lower(var.tags["client"])}"
   region                      = "${var.region}"
   tags                        = "${var.tags}"
   serverinfo                  = "${var.backupvault}"
@@ -55,7 +55,7 @@ module "sg_publish" {
   tags                  = "${var.tags}"
   region                = "${var.region}"
   environment           = "${var.environment}"
-  SG_Name               = "${var.tags["client_lc"]}-${var.publish["role"]}-nsg"
+  SG_Name               = "${lower(var.tags["client"])}-${var.publish["role"]}-nsg"
   resource_group_name   = "${azurerm_resource_group.main.name}"
   serverinfo            = "${var.publish}"
   mgmt_subnets          = "${var.mgmt_subnets}"
