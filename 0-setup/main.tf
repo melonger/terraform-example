@@ -1,3 +1,5 @@
+
+
 resource "azurerm_resource_group" "main" {
   name        = "${var.tags["client"]}-RG"
   location    = "${var.region}"

@@ -1,11 +1,11 @@
 data "template_file" "instance_user_data" {
-  template = "${file(var.user_data)}"
+  template = "${var.user_data}"
 
   vars {
     device_name         = "${var.serverinfo["device_names"]}"
     mount_name          = "${var.serverinfo["mount_names"]}"
-    ssh_public_key      = "${file(var.ssh_public_key)}"
-    ssh_private_key     = "${file(var.ssh_private_key)}"
+    ssh_public_key      = "${var.ssh_public_key}"
+    ssh_private_key     = "${var.ssh_private_key}"
     storageacct         = "${var.storageacct}"
   }
 }
