@@ -14,18 +14,6 @@ output "vnet_subnets" {
   value = "${module.network.vnet_subnets}"
 }
 
-output "nsg_author_id" {
-  value = "${module.sg_author.nsg_author_id}"
-}
-
-output "nsg_dispatch_id" {
-  value = "${module.sg_dispatch.nsg_dispatch_id}"
-}
-
-output "nsg_publish_id" {
-  value = "${module.sg_publish.nsg_publish_id}"
-}
-
 output "storageacct_id" {
   value = "${module.storage.storageacct_id}"
 }

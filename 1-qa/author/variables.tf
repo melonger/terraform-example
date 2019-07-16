@@ -1,21 +1,46 @@
 variable "subscription_id" {}
-# variable "client_id" {}
-# variable "client_secret" {}
-# variable "tenant_id" {}
-# variable "storage_access_key" {}
-variable "backend" {}
-variable "storage_account_name" {}
-variable "container_name" {}
 
-variable "region" {}
-variable "environment" {}
-variable "os_user" {}
-variable "chef_project" {}
-variable "ssh_private_key_location" {}
-variable "ssh_public_key_location" {}
+variable "backend" {
+  description = "Backend for all Terraform resources"
+  default     = "azurerm"
+}
+variable "storage_account_name" {
+  default = "examplestorage"
+}
+variable "container_name" {
+  default = "terraform-state"
+}
+
+variable "environment" {
+  default = "dev"
+}
+
+variable "region" {
+  default = "canadacentral"
+}
+
+variable "os_user" {
+  default = "azureuser"
+}
+
+variable "chef_project" {
+  default = "project-base"
+}
+
+variable "ssh_private_key_location" {
+  default = "../../varfiles/id_rsa"
+}
+
+variable "ssh_public_key_location" {
+  default = "../../varfiles/id_rsa.pub"
+}
 
 variable "tags" {
-  default = {}
+  type = "map"
+  default = {
+    client                  = "EXAMPLE"
+    costcenter              = "ClientName"
+  }
 }
 
 variable "author" {
@@ -23,20 +48,11 @@ variable "author" {
   default = {}
 }
 
-variable "publish" {
-  type = "map"
-}
+variable "mgmt_subnets" {
+  type = "list"
 
-variable "dispatch" {
-  type = "map"
-}
-
-variable "monitor_cpu" {
-  type = "map"
-  default = {}
-}
-
-variable "monitor_storage" {
-  type = "map"
-  default = {}
+  default = [
+    "172.21.1.0/24",
+    "172.21.2.0/24"
+  ]
 }

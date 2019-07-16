@@ -29,3 +29,7 @@ output "lb_ip" {
 output "lb_id" {
   value = "${module.lb.lb_id}"
 }
+
+output "nsg_dispatch_id" {
+  value = "${module.sg_dispatch.nsg_dispatch_id}"
+}

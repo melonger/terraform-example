@@ -3,9 +3,7 @@ resource "azurerm_key_vault" "main" {
   location            = "${var.region}"
   resource_group_name = "${var.resource_group_name}"
 
-  sku {
-    name = "${var.serverinfo["storage_sku"]}"
-  }
+  sku_name = "${var.serverinfo["storage_sku"]}"
 
   tenant_id = "${var.tenant_id}"
 

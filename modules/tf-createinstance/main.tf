@@ -122,13 +122,14 @@ resource "azurerm_virtual_machine" "server" {
      disable_password_authentication = true
      ssh_keys {
          path     = "/home/${var.os_user}/.ssh/authorized_keys"
-         key_data = "${file(var.ssh_public_key)}"
+         # key_data = "${file(var.ssh_public_key)}"
+         key_data = "${var.ssh_public_key}"
      }
   }
 
   boot_diagnostics {
      enabled = "true"
-     storage_uri = "https://${var.tags["client_lc"]}storageacct.blob.core.windows.net/" #variable created in 0-setup storage module in main.tf
+     storage_uri = "https://${lower(var.tags["client"])}storageacct.blob.core.windows.net/" #variable created in 0-setup storage module in main.tf
   }
 
   tags {

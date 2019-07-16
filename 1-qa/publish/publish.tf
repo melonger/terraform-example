@@ -1,3 +1,14 @@
+module "sg_publish" {
+  source                = "../modules/tf-sg/publish"
+  tags                  = "${var.tags}"
+  region                = "${var.region}"
+  environment           = "${var.environment}"
+  SG_Name               = "${lower(var.tags["client"])}-${var.publish["role"]}-nsg"
+  resource_group_name   = "${azurerm_resource_group.main.name}"
+  # serverinfo            = "${var.publish}"
+  mgmt_subnets          = "${var.mgmt_subnets}"
+}
+
 module "publish" {
   source                      = "../../modules/tf-createinstance"
   ssh_public_key              = "${var.ssh_public_key_location}"

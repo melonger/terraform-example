@@ -17,3 +17,7 @@ output "server_ids" {
 output "server_status" {
   value = "${module.author.status}"
 }
+
+output "nsg_author_id" {
+  value = "${module.sg_author.nsg_author_id}"
+}

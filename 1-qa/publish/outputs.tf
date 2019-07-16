@@ -17,3 +17,7 @@ output "server_ids" {
 output "server_status" {
   value = "${module.publish.status}"
 }
+
+output "nsg_publish_id" {
+  value = "${module.sg_publish.nsg_publish_id}"
+}

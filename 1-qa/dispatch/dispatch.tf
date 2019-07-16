@@ -1,3 +1,14 @@
+module "sg_dispatch" {
+  source                = "../modules/tf-sg/dispatch"
+  tags                  = "${var.tags}"
+  region                = "${var.region}"
+  environment           = "${var.environment}"
+  SG_Name               = "${lower(var.tags["client"])}-${var.dispatch["role"]}-nsg"
+  resource_group_name   = "${upper(var.tags["client"])}-RG"
+  # serverinfo            = "${var.dispatch}"
+  mgmt_subnets          = "${var.mgmt_subnets}"
+}
+
 module "dispatch" {
   source                      = "../../modules/tf-createinstance"
   ssh_public_key              = "${var.ssh_public_key_location}"
@@ -9,9 +20,9 @@ module "dispatch" {
   serverscount                = "${var.dispatch["count"]}"
   environment                 = "${var.environment}"
   os_user                     = "${var.os_user}"
-  resource_group_name         = "${var.tags["client"]}-RG"
-  network_security_group_name = "${var.tags["client_lc"]}-${var.dispatch["role"]}-nsg"
-  network_resource_group_name = "${var.tags["client_lc"]}-network"
+  resource_group_name         = "${upper(var.tags["client"])}-RG"
+  network_security_group_name = "${lower(var.tags["client"])}-${var.dispatch["role"]}-nsg"
+  network_resource_group_name = "${lower(var.tags["client"])}-network"
   tags                        = "${var.tags}"
   serverinfo                  = "${var.dispatch}"
 }
@@ -38,8 +49,8 @@ module "dispatch_boostrap" {
 
 module "lb" {
   source                      = "../../modules/tf-lb"
-  azurename_prefix            = "${var.tags["client_lc"]}${var.environment}"
-  hostname                    = "${var.tags["client_lc"]}-${var.environment}${var.dispatch["role"]}-srv"
+  azurename_prefix            = "${lower(var.tags["client"])}${var.environment}"
+  hostname                    = "${lower(var.tags["client"])}-${var.environment}${var.dispatch["role"]}-srv"
   region                      = "${var.region}"
   serverscount                = "${var.dispatch["count"]}"
   environment                 = "${var.environment}"
