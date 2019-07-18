@@ -1,5 +1,10 @@
+resource "random_integer" "random" {
+  min = 1
+  max = 1000
+}
+
 resource "azurerm_key_vault" "main" {
-  name                = "${var.azurename_prefix}-keyvault"
+  name                = "${var.azurename_prefix}-keyvault-${random_integer.random.result}"
   location            = "${var.region}"
   resource_group_name = "${var.resource_group_name}"
 
