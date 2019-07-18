@@ -1,5 +1,10 @@
+resource "random_integer" "random" {
+  min = 1
+  max = 1000
+}
+
 resource "azurerm_recovery_services_vault" "backup" {
-  name                = "${var.azurename_prefix}-backupvault"
+  name                = "${var.azurename_prefix}-backupvault-${random_integer.random.result}"
   location            = "${var.region}"
   resource_group_name = "${var.resource_group_name}"
   sku                 = "standard"
