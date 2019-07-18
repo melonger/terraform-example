@@ -5,8 +5,6 @@ variable "tags" {
 variable "serverinfo" {
   type = "map"
 }
-variable "user_data" {}
-variable "aem_data" {}
 variable "region" {}
 variable "serverscount" {}
 variable "environment" {}

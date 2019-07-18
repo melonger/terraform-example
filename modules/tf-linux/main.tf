@@ -1,17 +1,17 @@
 data "template_file" "instance_user_data" {
-  template = "${var.user_data}"
+  template = "${file("../../scripts/linux-common.sh")}"
 
   vars {
     device_name         = "${var.serverinfo["device_names"]}"
     mount_name          = "${var.serverinfo["mount_names"]}"
-    ssh_public_key      = "${var.ssh_public_key}"
-    ssh_private_key     = "${var.ssh_private_key}"
+    ssh_public_key      = "${file(var.ssh_public_key)}"
+    ssh_private_key     = "${file(var.ssh_private_key)}"
     storageacct         = "${var.storageacct}"
   }
 }
 
 data "template_file" "instance_aem_data" {
-  template = "${file(var.aem_data)}"
+  template = "${file("../../scripts/buildaem.sh")}"
 
   vars {
     storageacct         = "${var.storageacct}"

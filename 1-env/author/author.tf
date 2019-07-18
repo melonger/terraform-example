@@ -29,8 +29,6 @@ module "author" {
 
 module "author_boostrap" {
   source                      = "../../modules/tf-linux"
-  user_data                   = "../../scripts/linux-common.sh"
-  aem_data                    = "../../scripts/buildaem.sh"
   ssh_private_key             = "${var.ssh_private_key_location}"
   ssh_public_key              = "${var.ssh_public_key_location}"
   pub_ips                     = "${module.author.servers_pubip_address}"
@@ -43,5 +41,4 @@ module "author_boostrap" {
   environment                 = "${var.environment}"
   tags                        = "${var.tags}"
   serverinfo                  = "${var.author}"
-  # depends_list                 = ""
 }

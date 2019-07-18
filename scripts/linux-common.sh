@@ -137,21 +137,21 @@ if [ ! -d "$CHEFDIR/.chef" ]; then
     echo ".ssh directory already exists for Chef User"
   fi
   echo "pulling chef directory from git"
-  su -c "cd ~ && git clone git@github.com:melonger/$PROJECT.git ~/.chef" chef
+  su chef -c "cd ~ && git clone git@github.com:melonger/$PROJECT.git ~/.chef"
 else
   echo ".chef directory already exists for Chef User"
 fi
 
 if [ ! -d "$CHEFDIR/.chef/cookbooks" ]; then
   echo "pulling devops cookbook from git"
-  su -c 'cd /home/chef/.chef; git clone git@github.com:melonger/cookbooks.git' chef
+  su chef -c 'cd /home/chef/.chef; git clone git@github.com:melonger/cookbooks.git'
 else
   echo "devops cookbook already exists for Chef User"
 fi
 
 if [ ! -d "$CHEFDIR/.chef/cookbooks/devops" ]; then
   echo "pulling devops cookbook from git"
-  su -c 'cd /home/chef/.chef/cookbooks/; git clone git@github.com:melonger/devops.git' chef
+  su chef -c 'cd /home/chef/.chef/cookbooks/; git clone git@github.com:melonger/devops.git'
 else
   echo "devops cookbook already exists for Chef User"
 fi
