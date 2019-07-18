@@ -156,6 +156,13 @@ else
   echo "devops cookbook already exists for Chef User"
 fi
 
+if [ ! -d "$CHEFDIR/.chef/cookbooks/aem" ]; then
+  echo "pulling aem cookbook from git"
+  su chef -c 'cd /home/chef/.chef/cookbooks/; git clone git@github.com:melonger/aem.git'
+else
+  echo "aem cookbook already exists for Chef User"
+fi
+
 # chown -R chef:chef /home/chef/.chef
 su chef -c 'cp /etc/skel/.* ~' || :
 
